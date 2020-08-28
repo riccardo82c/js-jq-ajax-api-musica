@@ -9,6 +9,7 @@ $(document).ready(function () {
 		"method": "GET",
 		success: function (data) {
 
+			// trasformo lowerCase il valore di una chiave in ogni oggetto di un array di oggetti
 			transformAttr(data.response, 'genre');
 
 			// crea il DOM
@@ -17,7 +18,8 @@ $(document).ready(function () {
 			createOptions(data.response);
 
 			// al cambio di input in <select>
-			$('#genre').change(displaySelection());
+			$('#genre').change(displaySelection);
+
 		},
 		'error': function (richiesta, stato, errori) {
 			alert("E' avvenuto un errore.");
@@ -29,7 +31,6 @@ $(document).ready(function () {
 /* FUNZIONI */
 
 // Trasforma in lowerCase un attributo di un oggetto in un array
-
 function transformAttr(arr, attr) {
 	for (let i = 0; i < arr.length; i++) {
 		arr[i][attr] = arr[i][attr].toLowerCase();
@@ -59,6 +60,7 @@ function createOptions(data) {
 
 // Visualizza gli items del DOM in funzione del cambio dell'input in select
 function displaySelection() {
+	console.log('prova');
 	var category = $('#genre').val();
 	$('.cd').hide();
 	category != 'all' ? $('.cd.' + category).show() : $('.cd').show();
